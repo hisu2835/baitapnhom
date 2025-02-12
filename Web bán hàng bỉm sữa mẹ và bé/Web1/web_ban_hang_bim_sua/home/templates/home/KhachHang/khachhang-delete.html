@@ -1,0 +1,39 @@
+{% {% extends "master.html" %}
+
+{% block navbar %}
+    {% include '../../includes/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+<!-- render dynamic  -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Basic Inputs</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+            <form action="/student-delete/{{student.id}}" method="post">{% csrf_token %}
+              <h5 class="card-header">Default</h5>
+              <div class="card-body">
+                <div>
+                    <label for="defaultFormControlInput" class="form-label">Code</label>
+                    <input value="{{student.code}}" type="text" class="form-control" id="code" name="code" placeholder="Enter code" aria-describedby="defaultFormControlHelp">
+                  </div>
+                <div>
+                  <label for="defaultFormControlInput" class="form-label">Name</label>
+                  <input value="{{student.fullName}}" type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter full name" aria-describedby="defaultFormControlHelp">
+                </div>
+                <div>
+                    
+                </div>
+              </div>
+              <div class="card-body">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </div>
+             
+            </form>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% include '../../includes/footer.html' %}
+{% endblock %} %}

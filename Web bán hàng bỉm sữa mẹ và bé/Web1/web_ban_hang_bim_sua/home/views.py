@@ -11,6 +11,10 @@ from django.views.decorators.cache import cache_page
 
 # Cache trang danh mục trong 15 phút
 # @cache_page(60 * 15)
+def home(request):
+    return render(request, 'home.html')
+def clear_cache(request):
+    cache.delete('danhmucs')  # Xóa cache theo key
 def danhmuc(request):
     danhmucs = cache.get('danhmucs')
     if not danhmucs:
@@ -44,7 +48,16 @@ def danhmuc_new(request):
             return redirect("/danhmucs")
     template = loader.get_template('home/danhmuc/danhmuc-new.html')
     return HttpResponse(template.render({}, request))
+def search_danhmucs(request):
+    query = request.GET.get('q', '')
+    results = []
 
+    if query:
+        q = Q("multi_match", query=query, fields=["name", "description"])
+        search = DanhMucDocument.search().query(q)
+        results = search.execute()
+
+    return render(request, 'home/danhmuc/danhmucs.html', {'danhmucs': results})
 # Quản lý khách hàng
 def khachhang(request):
     khachhangs = KhachHang.objects.all()

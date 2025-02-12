@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webbs',
-    'home'
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://redis:6379/1',  # Use the Redis service name
+        'LOCATION': 'redis://127.0.0.1:6379/1',  # Use the Redis service name
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }

@@ -1,0 +1,55 @@
+{% extends "master.html" %}
+
+{% block nav-bar %}
+<!-- html -->
+{% endblock %}
+
+
+
+{% block content %}
+<!-- render dynamic  -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Basic Inputs</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+              <h5 class="card-header">Default</h5>
+              <form action="/student-new" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="card-body">
+                    <div>
+                    <label for="code" class="form-label">Code</label>
+                    <input type="text" id ="code" name="code" class="form-control"  placeholder="John Doe" aria-describedby="defaultFormControlHelp">
+                    
+                    </div>
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label">Full name</label>
+                        <input type="text" id ="fullName" name="fullName" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp">
+                        
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="html5-date-input" class="col-md-2 col-form-label">Date</label>
+                    
+                        <input class="form-control" type="date" value="2021-06-18" id="html5-date-input">
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                    </div>
+                    <div class="demo-inline-spacing">
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+          </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block footer %}
+{% include '../../includes/footer.html' %}
+{% endblock %}

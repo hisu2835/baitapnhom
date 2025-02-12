@@ -1,0 +1,110 @@
+{% extends "master.html" %}
+
+
+{% block nav-bar %}
+    {% include "../../includes/navbar.html" %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Extended UI /</span> Text Divider</h4>
+
+              <div class="row">
+                <!-- Basic -->
+                <form action="/delete_course/" method="post" >
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                        <h5 class="card-header">Manage Course</h5>
+                        <div class="card-body">
+                            <div>
+                            <label for="name" class="form-label">Name</label>
+                            <input
+                                type="text"
+                                value="{{course.name}}"
+                                class="form-control"
+                                id="name"
+                                name ="name"
+                                placeholder="John Doe"
+                                aria-describedby="defaultFormControlHelp"
+                            />
+                            <div id="defaultFormControlHelp" class="form-text">
+                                Enter course name.
+                            </div>
+                            </div>
+                            <div>
+                                <label for="year" class="form-label">Year</label>
+                                <input
+                                type="text"
+                                value="{{course.year}}"
+                                class="form-control"
+                                id="year"
+                                name ="year"
+                                placeholder="Year course"
+                                aria-describedby="defaultFormControlHelp"
+                                />
+                                <div id="defaultFormControlHelp" class="form-text">
+                                Enter year course
+                                </div>
+                            </div>
+                            <div>
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input
+                                type="text"
+                                value="{{course.startDate}}"
+                                class="form-control"
+                                id="startDate"
+                                name = "startDate"
+                                placeholder="Start date"
+                                aria-describedby="defaultFormControlHelp"
+                                />
+                                <div id="defaultFormControlHelp" class="form-text">
+                                    Enter start date format (YYYY-mm-dd)
+                                </div>
+                            </div>
+                            <!-- <div >
+                                <label for="startDate" class="col-md-2 col-form-label">Date</label>
+                                <div class="col-md-10">
+                                  <input id ="startDate" name ="statrDate" class="form-control" type="date" value="{{course.startDate}}" id="html5-date-input">
+                                </div>
+                                <div id="defaultFormControlHelp" class="form-text">
+                                    Enter start date format (YYYY-mm-dd)
+                                </div>
+                            </div> -->
+                            <div>
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input
+                                type="text"
+                                value="{{course.endDate}}"
+                                class="form-control"
+                                id="endDate"
+                                name ="endDate"
+                                placeholder="End date"
+                                aria-describedby="defaultFormControlHelp"
+                                />
+                                <div id="defaultFormControlHelp" class="form-text">
+                                Enter end date format (YYYY-mm-dd)
+                                </div>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" value=""  {% if course.active == True %} checked {%endif%} type="checkbox" id="active" name="active">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Active Course</label>
+                            </div>
+                            <div class="demo-inline-spacing">
+                                <!-- <button type="submit" class="btn rounded-pill btn-danger">Delete</button> -->
+                                <input type="submit" class="btn rounded-pill btn-danger" value="Delete" >
+                            </div>
+                        </div>
+                        </div>
+                    
+                    </form>   
+                <!-- /Basic -->
+
+              </div>
+    </div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}

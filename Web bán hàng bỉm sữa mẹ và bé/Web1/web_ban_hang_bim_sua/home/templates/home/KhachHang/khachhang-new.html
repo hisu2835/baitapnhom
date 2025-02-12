@@ -1,0 +1,89 @@
+{% extends "master.html" %}
+
+{% block nav-bar %}
+    {%include "../../includes/navbar.html"%}
+{% endblock %}
+
+
+{% block content %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms /</span> Basic Inputs</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Default</h5>
+                <div class="card-body">
+                    <div>
+                    <label for="defaultFormControlInput" class="form-label">Code number</label>
+                    <input type="text" value="{{student.code}}" class="form-control" id="code" placeholder="Code number" name ="code" aria-describedby="defaultFormControlHelp">
+                    </div>
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" value="{{student.fullName}}" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp">
+                    </div>
+                    <div>
+                        <label for="defaultFormControlInput" class="form-label">Birth Day</label>
+                        <input type="text" id ="birthDay" name ="birthDay" value="{{student.birthDay}}" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp">
+                        </div>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" id = "active" name ="active" type="checkbox" {% if student.active == True %} checked {%endif%} id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+                        </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Contextual Classes</h5>
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Course Name</th>
+                <th>Year</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+              
+              {% for item in courses %}
+                <tr class="table-default">
+                  <td><i class="fab fa-sketch fa-lg text-warning me-3"></i> <strong>{{item.name}}</strong></td>
+                  <td>{{item.year}}</td>
+                  <td>{{item.startDate}}</td>
+                  <td>{{item.endDate}}</td>
+                  <td><span class="badge bg-label-primary me-1">{{item.active}}</span></td>
+                  <td>
+                    <div class="dropdown">
+                      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="edit-course/{{ item.id }}"
+                          ><i class="bx bx-edit-alt me-1">
+
+                          </i> Edit</a
+                        >
+                        <a class="dropdown-item" href="delete-course/{{ item.id }}"
+                          ><i class="bx bx-trash me-1"></i> Delete</a
+                        >
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}

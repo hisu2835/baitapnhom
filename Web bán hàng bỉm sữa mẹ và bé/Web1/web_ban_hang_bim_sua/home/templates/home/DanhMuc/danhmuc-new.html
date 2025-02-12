@@ -1,19 +1,60 @@
-{% extends "master.html"%}
+{% extends "master.html" %}
 
-{% block navbar %}
-    {% include '../../includes/navbar.html'%}
+{% block nav-bar %}
+  
 {% endblock %}
+
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Trang nhân viên</h1>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Course/</span> New</h4>
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Basic Layout</h5>
+                <small class="text-muted float-end">Default label</small>
+              </div>
+              <div class="card-body">
+                <form method="post" action="/course-new">
+                {% csrf_token %}
+                  <div class="mb-3">
+                    <label class="form-label" for="name">Course Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Lap trinh Python">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="year">Year</label>
+                    <input class="form-control" type="number" name="year" value="18" id="year">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="startDate">Start Date</label>
+                    <div class="input-group input-group-merge">
+                        <input class="form-control" type="date" value="2021-06-18" name="startDate" id="startDate">
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label class="form-label" for="endDate">End Date</label>
+                    <div class="input-group input-group-merge">
+                        <input class="form-control" type="date" value="2021-06-18" name="endDate" id="endDate">
+                    </div>
+                  </div>
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="active" name="active" checked="">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+                  </div>
+                  
+                  
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+              </div>
             </div>
-        </div>
+          </div>
     </div>
-{% endblock %}
+</div>
+{%endblock%}
+
+
 
 {% block footer %}
-    {% include '../../includes/footer.html'%}
 {% endblock %}
