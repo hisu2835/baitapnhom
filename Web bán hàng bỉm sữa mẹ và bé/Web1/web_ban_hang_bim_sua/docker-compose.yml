@@ -35,5 +35,5 @@ services:
       xpack.security.enabled: "false"
     ports:
       - "9200:9200"
-volumes:
+volumes: 
   db_data:
