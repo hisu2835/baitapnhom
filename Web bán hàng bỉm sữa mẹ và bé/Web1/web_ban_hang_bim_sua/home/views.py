@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from webbs.models import DanhMuc
+from webbs.models import DanhMuc,SanPham,KhachHang,DonHang,ChiTietDonHang,GioHang,ChiTietGioHang
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home/home.html')
-
 def danh_muc(request):
     danh_muc = danh_muc.objects.all()
     template = loader.get_template('home/webbimsua.html')

@@ -28,12 +28,12 @@ class DjangoTest(unittest.TestCase):
         driver.get("http://127.0.0.1:8000/admin/login/?next=/admin/")
         inputUserName  = driver.find_element(By.NAME,value="username")
        
-        inputUserName.send_keys("admin")
+        inputUserName.send_keys("root")
         time.sleep(5)
 
         password  = driver.find_element(By.NAME,value="password")
    
-        password.send_keys("123456")
+        password.send_keys("root")
         time.sleep(5)
 
         password.send_keys(Keys.RETURN)
