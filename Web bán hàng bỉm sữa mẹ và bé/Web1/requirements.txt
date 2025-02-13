@@ -21,4 +21,7 @@ django-redis
 redis
 elasticsearch
 elasticsearch-dsl
+<<<<<<< HEAD
+=======
 selenium
+>>>>>>> 89e55d03f95c7ed8bb0a46828e572a35cc34167f
