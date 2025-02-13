@@ -2,7 +2,15 @@
 
 }/*max-width:1680px*/
 @media screen and (max-width:1440px){
-	.single-welcome-hero {height: 807px;}
+	.single-welcome-hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: auto;
+	}
+	
+	
 }/*max-width:1440px*/
 
 @media screen and (max-width:1199px){
@@ -93,4 +101,29 @@
 @media screen and  (max-width: 320px){
 	
 }/*max-width:320px*/
+
+.col-sm-5 {
+    width: 50%;
+    max-width: 50%;
+    flex-grow: 0; /* Không mở rộng vượt quá kích thước */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Đảm bảo không bị kéo dài */
+}
+
+.row {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between; /* Giữ khoảng cách hợp lý */
+    flex-wrap: nowrap; /* Ngăn không cho xuống dòng */
+}
+
+@media (min-width: 768px) {
+    .col-sm-5 {
+        width: 50% !important;
+        max-width: 50% !important;
+    }
+}
+
 
