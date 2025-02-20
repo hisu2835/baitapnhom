@@ -1,0 +1,106 @@
+<style>
+    #cart-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#cart-items li {
+  flex: 1 1 calc(33.33% - 10px);
+  /* Hiển thị 2 sản phẩm trên 1 hàng */
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 150px;
+}
+
+#cart-items .cart-total {
+    flex-basis: 100%; /* Giữ tổng tiền luôn ở cuối */
+    text-align: right;
+    background: #fff;
+    border-top: 2px solid #333;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da !important;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+
+<div class="col-md-4 order-md-2 mb-4 order-summary">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Giỏ hàng</span>
+        <span class="badge badge-secondary badge-pill" id="cart-count">
+            {% if order.items.count %}{{ order.items.count }}{% else %}0{% endif %}
+        </span>
+    </h4>
+
+    <ul class="list-group mb-3" id="cart-items">
+      {% for order_item in order.items.all %}
+      <li class="list-group-item d-flex justify-content-between lh-condensed">
+          <div>
+              <h6 class="my-0">{{ order_item.item.title }}</h6>
+              <small class="text-muted">Số lượng: {{ order_item.quantity }}</small>
+          </div>
+          <span class="text-muted">{{ order_item.get_final_price }} VNĐ</span>
+      </li>
+      {% endfor %}
+  
+      <!-- Phần tổng tiền cần đặt ngoài vòng lặp -->
+      <li class="list-group-item cart-total d-flex justify-content-between">
+          <span>Tổng cộng (VNĐ)</span>
+          <strong id="total-price">{% if order.get_total %}{{ order.get_total }}{% else %}0{% endif %} VNĐ</strong>
+      </li>
+  </ul>
+  
+
+    {% if DISPLAY_COUPON_FORM %}
+    <form method="POST" action="{% url 'core:add-coupon' %}" class="card p-2">
+        {% csrf_token %}
+        <div class="input-group">
+            {{ couponform.code }}
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Nhập mã</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+</div>
+
+
+
+
+

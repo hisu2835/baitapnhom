@@ -1,0 +1,44 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+  input {
+
+    border: 1px solid #ced4da !important;
+
+}
+</style>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6 mt-5 offset-3">
+      <h1>{% trans "Đăng nhập" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+<p>{% blocktrans %}Nếu bạn chưa có tài khoản, có thể
+<a href="{{ signup_url }}" class="text-primary">đăng ký tại đây </a> {% endblocktrans %}</p>
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <a class="btn btn-outline-dark" href="{% url 'account_reset_password' %}">{% trans "Quên mật khẩu?" %}</a>
+  <button class="btn btn-primary" type="submit">{% trans "Đăng nhập" %}</button>
+</form>
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

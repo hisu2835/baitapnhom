@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thanh toán - Bé Yêu Shop</title>
+    {% load static %}
+
+    <!-- CSS files -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'home/assets/logo/favicon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'home/assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/bootsnav.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/assets/css/responsive.css' %}">
+
+    <style>
+        .checkout-section {
+            padding: 120px 0 60px;
+            background-color: #f8f9fa;
+        }
+        .checkout-title {
+            margin-bottom: 40px;
+            color: #333;
+        }
+        .checkout-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .form-control {
+            height: 45px;
+            margin-bottom: 20px;
+        }
+        .payment-options {
+            margin: 30px 0;
+        }
+        .order-summary {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-width: 250px;
+            max-width: 400px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .input-group {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+        .input-group input {
+            flex-grow: 1;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .custom-control {
+            margin-bottom: 15px;
+        }
+        .btn-checkout {
+            background: #e99c2e;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .btn-checkout:hover {
+            background: #d48b27;
+        }
+    </style>
+</head>
+<body>
+    {% include "header.html" %}
+
+    <section class="checkout-section">
+        <div class="container">
+            <h1 class="checkout-title text-center">Thanh Toán Đơn Hàng</h1>
+
+            <div class="row">
+                <!-- Thông tin thanh toán -->
+                <div class="col-lg-8 mb-4">
+                    <div class="checkout-card">
+                        <h4 class="mb-4">Thông tin thanh toán</h4>
+                        <form method="POST" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label>{{ form.full_name.label }}</label>
+                                    {{ form.full_name }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>{{ form.phone_number.label }}</label>
+                                    {{ form.phone_number }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label>{{ form.country.label }}</label>
+                                {{ form.country }}
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label>{{ form.city.label }}</label>
+                                    {{ form.city }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>{{ form.district.label }}</label>
+                                    {{ form.district }}
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>{{ form.ward.label }}</label>
+                                    {{ form.ward }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label>{{ form.street_address.label }}</label>
+                                {{ form.street_address }}
+                            </div>
+                            
+                          
+
+                            <!-- Tùy chọn lưu thông tin -->
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="save-info" name="save_info">
+                                <label class="custom-control-label" for="save-info">
+                                    Lưu thông tin cho lần sau
+                                </label>
+                            </div>
+
+                            <!-- Phương thức thanh toán -->
+                            <div class="payment-options">
+                                <h4 class="mb-3">Phương thức thanh toán</h4>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="online" checked>
+                                    <label class="form-check-label" for="online">
+                                        Thanh toán trực tuyến
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="cod">
+                                    <label class="form-check-label" for="cod">
+                                        Thanh toán khi nhận hàng
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg btn-block btn-checkout" type="submit">
+                                Xác nhận đặt hàng
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tóm tắt đơn hàng -->
+                <div class="col-lg-4">
+                    <div class="order-summary">
+                        {% include "order_snippet.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include "footer.html" %}
+
+    <!-- JavaScript files -->
+    <script src="{% static 'home/assets/js/jquery.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="{% static 'home/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/bootsnav.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="{% static 'home/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'home/assets/js/custom.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+{% load static %}
+
+<header id="home" class="welcome-hero">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#header-carousel" data-slide-to="0" class="active"><span class="small-circle"></span></li>
+            <li data-target="#header-carousel" data-slide-to="1"><span class="small-circle"></span></li>
+            <li data-target="#header-carousel" data-slide-to="2"><span class="small-circle"></span></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for slide in slides %}
+            <div class="item {% if forloop.first %}active{% endif %}">
+                <div class="single-slide-item slide{{ forloop.counter }}">
+                    <div class="container">
+                        <div class="welcome-hero-content">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="single-welcome-hero">
+                                        <div class="welcome-hero-txt">
+                                            <h4>{{ slide.caption1 }}</h4>
+                                            <h2>{{ slide.caption2 }}</h2>
+                                            <div class="packages-price">
+                                                <p>{{ slide.price }}</p>
+                                            </div>
+                                            <button class="btn-cart welcome-add-cart">
+                                                <a href="{{ slide.link }}">Xem Chi Tiết</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="single-welcome-hero">
+                                        <div class="welcome-hero-img">
+                                            <img src="{{ slide.image.url }}" alt="{{ slide.caption1 }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="top-area">
+        <div class="header-area">
+            <nav class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+                <div class="top-search">
+                    <div class="container">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Tìm kiếm">
+                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="attr-nav">
+                        <ul>
+                            <li class="search">
+                                <a href="#"><span class="lnr lnr-magnifier"></span></a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-setting dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="lnr lnr-user"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'profile' %}">Tài khoản</a></li>
+                                    <li><a href="{% url 'orders' %}">Đơn hàng</a></li>
+                                    <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li class="nav-setting">
+                                <a href="#"><span class="lnr lnr-user"></span></a>
+                            </li>
+                            {% endif %}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="lnr lnr-cart"></span>
+                                    <span class="badge badge-bg-1">{{ cart_count|default:0 }}</span>
+                                </a>
+                                <ul class="dropdown-menu cart-list s-cate">
+                                   
+                                    <li class="total">
+                                        <span>Tổng: {{ cart_total|default:"0" }}đ</span>
+                                        <a href="#" class="btn-cart pull-right">Xem giỏ hàng</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <span>Bé Yêu</span>
+
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class="scroll {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                                <a href="{% url 'home' %}">Trang Chủ</a>
+                            </li>
+                            <li class="scroll {% if request.resolver_match.url_name == 'new_arrivals' %}active{% endif %}">
+                                <a href="#">Mới Nhất</a>
+                            </li>
+                            <li class="scroll {% if request.resolver_match.url_name == 'featured' %}active{% endif %}">
+                                <a href="#">Nổi Bật</a>
+                            </li>
+                            <li class="scroll {% if request.resolver_match.url_name == 'blog' %}active{% endif %}">
+                                <a href="#">Bài Viết</a>
+                            </li>
+                            <li class="scroll {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+                                <a href="#">Liên Hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</header>
+

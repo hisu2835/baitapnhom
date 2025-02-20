@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from elasticsearch_dsl.connections import connections
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'core',  # Thêm app core từ shop_django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webbs',
     'home',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django_extensions',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +65,9 @@ ROOT_URLCONF = 'webbs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,11 +149,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+STATIC_URL = '/static/'  # Đường dẫn URL cho static files
+
+# Thêm dòng này để chỉ định nơi lưu trữ file tĩnh khi chạy collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Nếu có thư mục static trong app, Django sẽ tìm nó ở đây
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = ["https://*.fly.dev"] # new
 SECURE_CROSS_ORIGIN_OPENER_POLICY =["https://app.powerbi.com/reportEmbed?reportId=bf53e685-5aca-432e-90a4-7f14759fbb52&autoAuth=true&embeddedDemo=true"]
+STRIPE_SECRET_KEY = "sk_test_51QtrAUPwOAbWDZdpWt4rnge1mVpZ3d0UMX8UJ50HCHl4SAcLZPTLrYKPCxlvuO00JC2Fl3DgsJUsWNE0CgX5u9DG000yG0HHbx"
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+LOGIN_REDIRECT_URL = '/'  # Sau khi đăng nhập, người dùng sẽ được chuyển về trang chủ
+LOGOUT_REDIRECT_URL = '/'  # Sau khi đăng xuất, người dùng sẽ được chuyển về trang chủ
+ACCOUNT_SESSION_REMEMBER = True
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

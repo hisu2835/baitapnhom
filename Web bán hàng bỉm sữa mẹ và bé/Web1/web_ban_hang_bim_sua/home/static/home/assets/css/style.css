@@ -891,28 +891,100 @@ span.feature-review {margin-left: 10px;}
 /*-------------------------------------
         11. Footer
 --------------------------------------*/
-.footer {
-    background: #f8f9fd;
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.footer-logos img {
+    max-width: 120px;
+    height: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.footer-section {
+    max-width: 250px;
+}
+
+.footer-section h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #ff6f61;
+}
+
+.newsletter-input {
     display: flex;
     align-items: center;
-    height: 154px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 250px;
 }
-.hm-footer-copyright p,.hm-footer-copyright p a {
-    color: #a5adb3;
-    font-size: 14px;
-    font-weight: 400;
-}
-.footer-social a i {
-    color: #a4aaaf;
-    margin: 0 18px 24px 0;
-    -webkit-transition: .3s; 
-    -moz-transition:.3s; 
-    -ms-transition:.3s; 
-    -o-transition:.3s;
-    transition: .3s;
-}
-.footer-social i:hover{color: #e99c2e;}
 
+.newsletter-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+}
+
+.newsletter-input button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.footer-bottom {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.social-icons a {
+    margin: 0 5px;
+    font-size: 18px;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff6f61;
+}
 /*===============================
     Scroll Top
 ===============================*/
@@ -972,6 +1044,9 @@ span.feature-review {margin-left: 10px;}
     height: 100px; /* Ép tất cả ảnh có cùng chiều cao */
     width: auto !important; /* Giữ nguyên tỷ lệ */
     object-fit: contain; /* Đảm bảo ảnh không bị méo */
+}
+.country-select-flag {
+    display: none !important;
 }
 
 
